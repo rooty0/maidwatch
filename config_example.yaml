@@ -1,0 +1,4 @@
+---
+ip: 192.168.0.21
+token: your_token
+errors_max_allowed: 5  # Max errors to retry before send vacuum to dock station
