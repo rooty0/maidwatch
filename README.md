@@ -18,7 +18,7 @@ python watcher.py
 ```
 
 ### In action
-![sampleone](https://github.com/rooty0/maidwatch/blob/master/sample1.png?raw=true)
+![sampleone](https://github.com/rooty0/maidwatch/blob/main/sample1.png?raw=true)
 
 ### Dependencies
 - miio
