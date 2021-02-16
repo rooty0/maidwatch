@@ -34,7 +34,10 @@ args = parser.parse_args()
 with open("config.yaml") as file:
     config = yaml.full_load(file)
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s %(name)s %(message)s', datefmt='%m/%d %H:%M')
+if not args.verbose:
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d %H:%M')
+else:
+    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s %(message)s', datefmt='%m/%d %H:%M')
 
 vac = miio.Vacuum(config['ip'], config['token'])
 
@@ -67,7 +70,7 @@ ERROR_COUNTER = {  # errors that allows to retry
     5: 0,  # error 5: Clean a fishing line and bearings of the Main Brush
     8: 0,  # error 8: Clean area around device
 }
-CLEAN_LEFT = args.times
+# CLEAN_LEFT = args.times
 while True:
     status = vac.status()
 
