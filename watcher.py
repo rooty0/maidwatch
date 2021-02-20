@@ -68,6 +68,7 @@ if args.action != 'monitor':
 
 ERROR_COUNTER = {  # errors that allows to retry
     5: 0,  # error 5: Clean a fishing line and bearings of the Main Brush
+    7: 0,  # error 7: Main wheel stuck
     8: 0,  # error 8: Clean area around device
 }
 # CLEAN_LEFT = args.times
@@ -98,6 +99,13 @@ while True:
                         vac.start()
             else:
                 raise Exception("Unknown error code {}".format(status.error_code))
+
+        if status.state_code == 3:
+            logging.info("Error 3")
+            logging.info("The error means the vacuum is stuck on an unlevel surface what is fatal. It's not even going "
+                         "to try to get out from the trap because the gyro sensor reports about unlevel surface. "
+                         "At this point, nothing can be done")
+            break
 
         for error_num, error_count in ERROR_COUNTER.items():
             if error_count >= config['errors_max_allowed']:
