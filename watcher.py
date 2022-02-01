@@ -4,7 +4,7 @@ import yaml
 import argparse
 import sys
 
-from miio.vacuumcontainers import error_codes
+from miio.integrations.vacuum.roborock.vacuumcontainers import error_codes
 from time import sleep
 from signal import signal, SIGINT
 
@@ -39,8 +39,7 @@ if not args.verbose:
 else:
     logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s %(message)s', datefmt='%m/%d %H:%M')
 
-vac = miio.Vacuum(config['ip'], config['token'])
-
+vac = miio.RoborockVacuum(config['ip'], config['token'])
 logging.info("Connecting to vacuum cleaner...")
 status = vac.status()
 res = vac.consumable_status()
